@@ -1,0 +1,27 @@
+<button style="margin-top: 10px; margin-left: 10px;" routerLink="/home">⬅️</button>
+
+<div style="text-align: center;">
+  <mat-form-field>
+    <mat-label>Recherche</mat-label>
+    <input #box matInput type="text" (keyup)="search(box.value)">
+  </mat-form-field>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Identifiant</th>
+      <th>Name</th>
+      <th>Image</th>
+      <th>Détail</th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let launch of searchResults">
+    <tr>
+      <td>{{launch.flight_number}}</td>
+      <td>{{launch.name}}</td>
+      <td><img style="width:50%; box-shadow: 1px 2px 3px whitesmoke;" [src]="launch.links.patch.small"></td>
+      <td>{{launch.details | slice:0:90}}...</td>
+    </tr>
+  </tbody>
+</table>
