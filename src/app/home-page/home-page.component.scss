@@ -1,0 +1,26 @@
+.card{
+    display: flex;
+    margin: auto 20px;
+    margin-top: 20px;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+
+button{
+    margin-top: 20px;
+    margin-left: 15px;
+}
+
+.row1, .row2{
+    margin: auto;
+    padding: 10px;
+    // border: 1px solid;
+    box-shadow: lightgray 5px 5px 10px;
+}
+
+.example-card {
+    max-width: 400px;
+    margin-bottom: 8px;
+  }
+  
