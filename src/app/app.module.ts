@@ -15,6 +15,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatCardModule } from '@angular/material/card';
+import { AngularFireModule } from '@angular/fire/compat'
+import { environment } from 'src/environements/environnement';
 
 
 @NgModule({
@@ -36,7 +38,8 @@ import { MatCardModule } from '@angular/material/card';
     MatIconModule,
     MatTableModule,
     MatPaginatorModule,
-    MatCardModule
+    MatCardModule,
+    AngularFireModule.initializeApp(environment.firebase)
   ],
   providers: [],
   bootstrap: [AppComponent]

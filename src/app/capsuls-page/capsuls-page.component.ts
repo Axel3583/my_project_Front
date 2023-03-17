@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SpaceXService } from '../space-x.service';
+import { SpaceXService } from '../service/space-x.service';
 
 
 @Component({

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
-import { SpaceXService } from '../space-x.service';
+import { AuthentificationService } from '../service/authentification.service';
+import { SpaceXService } from '../service/space-x.service';
 
 
 @Component({
@@ -11,17 +11,17 @@ import { SpaceXService } from '../space-x.service';
 })
 export class LoginPageComponent implements OnInit{
 
-  credentials = {
-    Identifiant : "aibo",
-    mdp : 12345
-  }
+  // credentials = {
+  //   Identifiant : "aibo",
+  //   mdp : 12345
+  // }
 
   form = new FormGroup({
     Identifiant : new FormControl(),
     mdp : new FormControl()
   })
 
-  constructor(private router : Router, private spaceX: SpaceXService){}
+  constructor(private spaceX: SpaceXService, private authentificationService: AuthentificationService ){}
 
   launche: any;
 
@@ -33,13 +33,11 @@ export class LoginPageComponent implements OnInit{
   }
 
   onSubmit(){
+    if(!this.form.valid){
+      return;
+    }
     console.log('Bien vu !');
     console.log(this.form.value);
-    if(!((this.form.value.Identifiant === this.credentials.Identifiant) && (this.form.value.mdp === this.credentials.mdp))){
-      alert("Les informations de connexion sont incorrects !")
-    }else{
-      this.router.navigate(["/home"])
-    }
-    //this.form.reset()
+    this.authentificationService.login(this.form.value.Identifiant, this.form.value.mdp)
   }
 }
