@@ -1,1 +1,17 @@
-<p>register-page works!</p>
+
+
+<div class="row">
+    <div class="column1" style="background-color: rgb(212, 216, 219); border-radius: 5px 5px 3px;" >
+        <form [formGroup]="form" (ngSubmit)="onSubmit()" id="top">
+            <input style="margin-bottom: 12px;" type="text" placeholder="Identifiant" required formControlName="Identifiant">
+            <input type="number" placeholder="Mot de passe" required formControlName="mdp">
+            <button class="btn">Valider</button>
+        </form>
+        <button class="btn" routerLink="/">Connectez-vous ?</button>
+    </div>
+    <!-- <div style="display: inline-block; width: 20%;">
+        <div class="column2" *ngFor="let launch of launche.slice(0,2)">
+            <span><img [src]="launch.links.patch.small"></span>
+        </div>
+    </div> -->
+</div>

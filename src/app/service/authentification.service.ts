@@ -24,7 +24,7 @@ export class AuthentificationService {
   register(username: string, password: string) {
     this.angularFireAuth.createUserWithEmailAndPassword(username, password).then(() => {
       alert('Registration Successfully !')
-      this.router.navigate(["/login"])
+      this.router.navigate(["/"])
     }, err => {
       alert('Something wrong')
       this.router.navigate(["/register"])
@@ -35,7 +35,7 @@ export class AuthentificationService {
   logout() {
     this.angularFireAuth.signOut().then(() => {
       localStorage.removeItem('token')
-      this.router.navigate(["/login"])
+      this.router.navigate(["/"])
     }, err => {
       alert(err.message);
     })
