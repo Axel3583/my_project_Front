@@ -24,20 +24,18 @@
       </section>
       <div class="login-group">
         <clr-input-container>
-          <label class="clr-sr-only">Username</label>
-          <!-- <div *ngIf="form.controls['rememberMe']?.invalid && (form.controls['rememberMe']?.dirty || form.controls['rememberMe']?.touched)">
-            <p *ngIf="form.controls['rememberMe']?.errors?.['required']" class="error active">Email is required.</p>
-            <p *ngIf="form.controls['rememberMe']?.errors?.['minlength']" class="error active">Email must be at least 5 characters long.</p>
-          </div> -->
+          <label class="clr-sr-only">Email</label>
+          <clr-control-error>Email is required! exemple@gmail.com</clr-control-error>
           <input type="text" required clrInput placeholder="Email" formControlName="Identifiant"/>
         </clr-input-container>
         <clr-password-container>
           <label class="clr-sr-only">Password</label>
-          <input type="password" required clrPassword placeholder="Password" formControlName="Password"/>
-          <!-- <div *ngIf="!form.value.Password?.invalid || !(form.value.Password?.dirty || form.value.Password?.touched)">
-            <p *ngIf="form.value.Password?.errors?.['required']" class="error active">Password is required.</p>
-            <p *ngIf="form.value.Password?.errors?.['minlength']" class="error active">Password must be at least 8 characters long.</p>
-          </div> -->
+          <input type="password" required clrPassword placeholder="Password" formControlName="Password" required minlength="10"/>
+          <clr-control-helper>
+            Must contain at least 8 characters with at least one of them a special character like !@#$%^&*)
+          </clr-control-helper>
+          <clr-control-error *clrIfError="'required'">This field is required!</clr-control-error>
+          <clr-control-error *clrIfError="'minlength'">It must be at least 8 characters!</clr-control-error>
         </clr-password-container>
         <clr-checkbox-wrapper>
           <label>Remember me</label>
