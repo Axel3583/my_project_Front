@@ -10,7 +10,7 @@ import { SpaceXService } from '../service/space-x.service';
 })
 export class HomePageComponent implements OnInit {
 
-  launches: any
+  launches: any;
 
   constructor(public spaceX: SpaceXService, private authentificationService: AuthentificationService){}
 

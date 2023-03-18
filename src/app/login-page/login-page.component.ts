@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthentificationService } from '../service/authentification.service';
 import { SpaceXService } from '../service/space-x.service';
+
 
 
 @Component({
@@ -23,9 +25,11 @@ export class LoginPageComponent implements OnInit {
     rememberMe: new FormControl()
   })
 
-  constructor(private spaceX: SpaceXService, private authentificationService: AuthentificationService) { }
+  constructor(private spaceX: SpaceXService, private authentificationService: AuthentificationService, private router: Router) { }
 
   launche: any;
+  loggedIn = false;
+  loginError = false;
 
   ngOnInit(): void {
     this.spaceX.getLaunches().subscribe((res) => {
@@ -37,15 +41,14 @@ export class LoginPageComponent implements OnInit {
     if (!this.form.valid) {
       return;
     }
-    console.log('Bien vu !');
-    this.authentificationService.login(this.form.value.Identifiant, this.form.value.Password)
+      this.authentificationService.login(this.form.value.Identifiant, this.form.value.Password).then(() => {
+        this.loggedIn = true;
+        localStorage.setItem('token', 'true')
+        this.router.navigate(["/home"])
+      }, err => {
+        this.loginError = true;
+        console.log(err);
+        this.router.navigate(["/"])
+      });
   }
-
-  // get Identifiant() {
-  //   return this.form.get('Identifiant');
-  // }
-
-  // get Password() {
-  //   return this.form.get('Password');
-  // }
 }

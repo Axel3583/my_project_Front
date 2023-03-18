@@ -11,13 +11,7 @@ export class AuthentificationService {
 
   // Login methode
   login(username: string, password: string) {
-    return this.angularFireAuth.signInWithEmailAndPassword(username, password).then(() => {
-      localStorage.setItem('token', 'true')
-      this.router.navigate(["/home"])
-    }, err => {
-      alert('Something wrong')
-      this.router.navigate(["/"])
-    })
+    return this.angularFireAuth.signInWithEmailAndPassword(username, password)
   }
 
   // Register methode
@@ -31,7 +25,7 @@ export class AuthentificationService {
     })
   }
 
-  // Sign Out
+  // SignOut
   logout() {
     this.angularFireAuth.signOut().then(() => {
       localStorage.removeItem('token')

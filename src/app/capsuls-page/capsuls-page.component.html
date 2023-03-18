@@ -1,5 +1,5 @@
-<button routerLink="/home">⬅️</button>
-<table>
+<button class="btn btn-primary" routerLink="/home">⬅️</button>
+<!-- <table>
     <thead>
       <tr>
         <th>Identifiant</th>
@@ -18,5 +18,20 @@
         <td>{{capsule.last_update}}</td>
       </tr>
     </tbody>
-  </table>
+  </table> -->
   
+  <clr-datagrid>
+    <clr-dg-column>Identifiant</clr-dg-column>
+    <clr-dg-column>Serial</clr-dg-column>
+    <clr-dg-column>Status</clr-dg-column>
+    <clr-dg-column>Type</clr-dg-column>
+    <clr-dg-column>Last_Update</clr-dg-column>
+
+    <clr-dg-row *ngFor="let capsule of capsules">
+        <clr-dg-cell>{{capsule.id}}</clr-dg-cell>
+        <clr-dg-cell>{{capsule.serial}}</clr-dg-cell>
+        <clr-dg-cell>{{capsule.status}}</clr-dg-cell>
+        <clr-dg-cell>{{capsule.type}}</clr-dg-cell>
+        <clr-dg-cell>{{capsule.last_update}}</clr-dg-cell>
+    </clr-dg-row>
+</clr-datagrid>
