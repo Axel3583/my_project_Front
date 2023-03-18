@@ -1,5 +1,4 @@
-
-
+<!-- 
 <div class="row">
     <div class="column1" style="background-color: rgb(212, 216, 219); border-radius: 5px 5px 3px;" >
         <form [formGroup]="form" (ngSubmit)="onSubmit()" id="top">
@@ -9,9 +8,48 @@
         </form>
         <button class="btn" routerLink="/">Connectez-vous ?</button>
     </div>
-    <!-- <div style="display: inline-block; width: 20%;">
+    <div style="display: inline-block; width: 20%;">
         <div class="column2" *ngFor="let launch of launche.slice(0,2)">
             <span><img [src]="launch.links.patch.small"></span>
         </div>
-    </div> -->
-</div>
+    </div>
+</div> -->
+
+<div class="login-wrapper">
+    <form class="login" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <section class="title">
+        <h3 class="welcome">Welcome to</h3>
+        SpaceX Register
+      </section>
+      <div class="login-group">
+        <clr-select-container>
+          <label>User Role</label>
+          <select clrSelect name="type" formControlName="type">
+            <option value="local">Local Users</option>
+            <option value="admin">Administrator</option>
+          </select>
+        </clr-select-container>
+        <clr-input-container>
+          <label class="clr-sr-only">Username</label>
+          <!-- <div *ngIf="Identifiant?.invalid && (Identifiant?.dirty || Identifiant?.touched)">
+            <p *ngIf="Identifiant?.errors?.['required']" class="error active">Email is required.</p>
+            <p *ngIf="Identifiant?.errors?.['minlength']" class="error active">Email must be at least 5 characters long.</p>
+          </div> -->
+          <input type="text" required clrInput placeholder="Email" formControlName="Identifiant"/>
+        </clr-input-container>
+        <clr-password-container>
+          <label class="clr-sr-only">Password</label>
+          <input type="password" required clrPassword placeholder="Password" formControlName="Password"/>
+          <!-- <div *ngIf="!form.value.Password?.invalid || !(form.value.Password?.dirty || form.value.Password?.touched)">
+            <p *ngIf="form.value.Password?.errors?.['required']" class="error active">Password is required.</p>
+            <p *ngIf="form.value.Password?.errors?.['minlength']" class="error active">Password must be at least 8 characters long.</p>
+          </div> -->
+        </clr-password-container>
+        <div class="error active" *ngIf="!form.valid">
+          Invalid user name or password
+        </div>
+        <button [disabled]="!form.valid" type="submit" class="btn btn-primary">NEXT</button>
+        <button type="button" class="btn btn-primary" routerLink="/">Connectez-vous ?</button>
+      </div>
+    </form>
+  </div>

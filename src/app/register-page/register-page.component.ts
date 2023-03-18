@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthentificationService } from '../service/authentification.service';
 
 
@@ -11,8 +11,10 @@ import { AuthentificationService } from '../service/authentification.service';
 export class RegisterPageComponent {
 
   form = new FormGroup({
-    Identifiant : new FormControl(),
-    mdp : new FormControl()
+    type: new FormControl('local'),
+    Identifiant: new FormControl(),
+    Password: new FormControl(),
+    rememberMe: new FormControl()
   })
 
   constructor(private authentificationService: AuthentificationService ){}
@@ -22,8 +24,7 @@ export class RegisterPageComponent {
       return;
     }
     console.log('Bien vu !');
-    console.log(this.form.value);
-    this.authentificationService.register(this.form.value.Identifiant, this.form.value.mdp)
+    this.authentificationService.register(this.form.value.Identifiant, this.form.value.Password)
   }
 
 }
