@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,6 +17,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatCardModule } from '@angular/material/card';
 import { AngularFireModule } from '@angular/fire/compat'
 import { environment } from 'src/environements/environnement';
+import { ClarityModule } from "@clr/angular";
+import { ClrPasswordContainer } from '@clr/angular'
 
 
 @NgModule({
@@ -26,7 +28,7 @@ import { environment } from 'src/environements/environnement';
     LaunchPageComponent,
     CapsulsPageComponent,
     LoginPageComponent,
-    RegisterPageComponent
+    RegisterPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,9 +41,13 @@ import { environment } from 'src/environements/environnement';
     MatTableModule,
     MatPaginatorModule,
     MatCardModule,
-    AngularFireModule.initializeApp(environment.firebase)
+    ClarityModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    
+
   ],
   providers: [],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

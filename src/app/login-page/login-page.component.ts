@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthentificationService } from '../service/authentification.service';
 import { SpaceXService } from '../service/space-x.service';
 
@@ -9,7 +9,7 @@ import { SpaceXService } from '../service/space-x.service';
   templateUrl: './login-page.component.html',
   styleUrls: ['./login-page.component.scss']
 })
-export class LoginPageComponent implements OnInit{
+export class LoginPageComponent implements OnInit {
 
   // credentials = {
   //   Identifiant : "aibo",
@@ -17,27 +17,35 @@ export class LoginPageComponent implements OnInit{
   // }
 
   form = new FormGroup({
-    Identifiant : new FormControl(),
-    mdp : new FormControl()
+    type: new FormControl('local'),
+    Identifiant: new FormControl(),
+    Password: new FormControl(),
+    rememberMe: new FormControl()
   })
 
-  constructor(private spaceX: SpaceXService, private authentificationService: AuthentificationService ){}
+  constructor(private spaceX: SpaceXService, private authentificationService: AuthentificationService) { }
 
   launche: any;
 
   ngOnInit(): void {
-    this.spaceX.getLaunches().subscribe((res) =>  {
-    this.launche = res;
-    console.log(this.launche, "okay");
+    this.spaceX.getLaunches().subscribe((res) => {
+      this.launche = res;
     })
   }
 
-  onSubmit(){
-    if(!this.form.valid){
+  onSubmit() {
+    if (!this.form.valid) {
       return;
     }
     console.log('Bien vu !');
-    console.log(this.form.value);
-    this.authentificationService.login(this.form.value.Identifiant, this.form.value.mdp)
+    this.authentificationService.login(this.form.value.Identifiant, this.form.value.Password)
   }
+
+  // get Identifiant() {
+  //   return this.form.get('Identifiant');
+  // }
+
+  // get Password() {
+  //   return this.form.get('Password');
+  // }
 }
