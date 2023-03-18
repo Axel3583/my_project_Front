@@ -17,39 +17,37 @@
 
 <div class="login-wrapper">
     <form class="login" [formGroup]="form" (ngSubmit)="onSubmit()">
-      <section class="title">
-        <h3 class="welcome">Welcome to</h3>
-        SpaceX Register
-      </section>
-      <div class="login-group">
-        <clr-select-container>
-          <label>User Role</label>
-          <select clrSelect name="type" formControlName="type">
-            <option value="local">Local Users</option>
-            <option value="admin">Administrator</option>
-          </select>
-        </clr-select-container>
-        <clr-input-container>
-          <label class="clr-sr-only">Username</label>
-          <!-- <div *ngIf="Identifiant?.invalid && (Identifiant?.dirty || Identifiant?.touched)">
-            <p *ngIf="Identifiant?.errors?.['required']" class="error active">Email is required.</p>
-            <p *ngIf="Identifiant?.errors?.['minlength']" class="error active">Email must be at least 5 characters long.</p>
-          </div> -->
-          <input type="text" required clrInput placeholder="Email" formControlName="Identifiant"/>
-        </clr-input-container>
-        <clr-password-container>
-          <label class="clr-sr-only">Password</label>
-          <input type="password" required clrPassword placeholder="Password" formControlName="Password"/>
-          <!-- <div *ngIf="!form.value.Password?.invalid || !(form.value.Password?.dirty || form.value.Password?.touched)">
-            <p *ngIf="form.value.Password?.errors?.['required']" class="error active">Password is required.</p>
-            <p *ngIf="form.value.Password?.errors?.['minlength']" class="error active">Password must be at least 8 characters long.</p>
-          </div> -->
-        </clr-password-container>
-        <div class="error active" *ngIf="!form.valid">
-          Invalid user name or password
+        <section class="title">
+            <h3 class="welcome">Welcome to</h3>
+            SpaceX Register
+        </section>
+        <div class="login-group">
+            <clr-select-container>
+                <label>User Role</label>
+                <select clrSelect name="type" formControlName="type">
+                    <option value="local">Local Users</option>
+                    <option value="admin">Administrator</option>
+                </select>
+            </clr-select-container>
+            <clr-input-container>
+                <label class="clr-sr-only">Email</label>
+                <clr-control-error>Email is required! exemple@gmail.com</clr-control-error>
+                <input type="text" required clrInput placeholder="Email" formControlName="Identifiant" />
+            </clr-input-container>
+            <clr-password-container>
+                <label class="clr-sr-only">Password</label>
+                <input type="password" required clrPassword placeholder="Password" formControlName="Password" required minlength="10" />
+                <clr-control-helper>
+                    Must contain at least 8 characters with at least one of them a special character like !@#$%^&*)
+                  </clr-control-helper>
+                  <clr-control-error *clrIfError="'required'">This field is required!</clr-control-error>
+                  <clr-control-error *clrIfError="'minlength'">It must be at least 8 characters!</clr-control-error>
+            </clr-password-container>
+            <div class="error active" *ngIf="!form.valid">
+                Invalid user name or password
+            </div>
+            <button [disabled]="!form.valid" type="submit" class="btn btn-primary">NEXT</button>
+            <button type="button" class="btn btn-primary" routerLink="/">Connectez-vous ?</button>
         </div>
-        <button [disabled]="!form.valid" type="submit" class="btn btn-primary">NEXT</button>
-        <button type="button" class="btn btn-primary" routerLink="/">Connectez-vous ?</button>
-      </div>
     </form>
-  </div>
+</div>
