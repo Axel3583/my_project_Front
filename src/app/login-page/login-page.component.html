@@ -15,7 +15,28 @@
     </div>
 
 </div> -->
-
+<div *ngIf="loggedIn" class="alert alert-success" role="alert">
+    <div class="alert-items">
+      <div class="alert-item static">
+        <div class="alert-icon-wrapper">
+          <cds-icon class="alert-icon" shape="check-circle"></cds-icon>
+        </div>
+        <span class="alert-text">Connexion réussie.</span>
+      </div>
+    </div>
+  </div>
+  
+  <div *ngIf="loginError" class="alert alert-danger" role="alert">
+    <div class="alert-items">
+      <div class="alert-item static">
+        <div class="alert-icon-wrapper">
+          <cds-icon class="alert-icon" shape="exclamation-triangle"></cds-icon>
+        </div>
+        <span class="alert-text">Email ou Mot de passe incorrect.</span>
+      </div>
+    </div>
+  </div>
+   
 <div class="login-wrapper">
     <form class="login" [formGroup]="form" (ngSubmit)="onSubmit()" >
       <section class="title">
@@ -30,7 +51,7 @@
         </clr-input-container>
         <clr-password-container>
           <label class="clr-sr-only">Password</label>
-          <input type="password" required clrPassword placeholder="Password" formControlName="Password" required minlength="10"/>
+          <input type="password" required clrPassword placeholder="Password" formControlName="Password" required minlength="5"/>
           <clr-control-helper>
             Must contain at least 8 characters with at least one of them a special character like !@#$%^&*)
           </clr-control-helper>
