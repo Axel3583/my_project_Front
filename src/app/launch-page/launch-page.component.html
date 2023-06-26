@@ -1,36 +1,16 @@
-<button class="btn btn-primary" style="margin-top: 10px; margin-left: 10px;" routerLink="/home">⬅️</button>
+<header class="header header-6" style="margin: 10px;">
+  <div>
+    <button routerLink="/home" type="button"  style="margin-top: 10px; margin-left: 10px;" class="btn btn-icon btn-primary" aria-label="settings">
+      <cds-icon shape="undo"></cds-icon>
+    </button>
+  </div>
+  <form class="search">
+      <label for="search_input">
+          <input #box id="search_input" (keyup)="search(box.value)" type="text" placeholder="Search for keywords...">
+      </label>
+  </form>
+</header>
 
-<div style="text-align: center;">
-  <!-- <mat-form-field>
-    <mat-label>Recherche</mat-label>
-    <input #box matInput type="text" (keyup)="search(box.value)">
-  </mat-form-field> -->
-  <clr-input-container style="align-items: center; margin-bottom: 5px;">
-    <label for="search">Recherche:</label>
-    <input #box clrInput type="text" (keyup)="search(box.value)">
-    <clr-icon shape="search" class="clr-input-icon" aria-hidden="true"></clr-icon>
-  </clr-input-container>
-  
-</div>
-
-<!-- <table>
-  <thead>
-    <tr>
-      <th>Identifiant</th>
-      <th>Name</th>
-      <th>Image</th>
-      <th>Détail</th>
-    </tr>
-  </thead>
-  <tbody *ngFor="let launch of searchResults">
-    <tr>
-      <td>{{launch.flight_number}}</td>
-      <td>{{launch.name}}</td>
-      <td><img style="width:50%; box-shadow: 1px 2px 3px whitesmoke;" [src]="launch.links.patch.small"></td>
-      <td>{{launch.details | slice:0:90}}...</td>
-    </tr>
-  </tbody>
-</table> -->
 
 <clr-datagrid>
   <clr-dg-column>Identifiant</clr-dg-column>
