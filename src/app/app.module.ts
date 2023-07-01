@@ -15,10 +15,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatCardModule } from '@angular/material/card';
-import { AngularFireModule } from '@angular/fire/compat'
-import { environment } from 'src/environements/environnement';
 import { ClarityModule } from "@clr/angular";
-import { ClrPasswordContainer } from '@clr/angular'
 
 
 @NgModule({
@@ -41,9 +38,7 @@ import { ClrPasswordContainer } from '@clr/angular'
     MatTableModule,
     MatPaginatorModule,
     MatCardModule,
-    ClarityModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    
+    ClarityModule
 
   ],
   providers: [],

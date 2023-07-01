@@ -1,37 +1,43 @@
 import { Injectable } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { Observable, catchError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthentificationService {
 
-  constructor(private angularFireAuth: AngularFireAuth, private router: Router) { }
+  private readonly API_LOGIN = 'http://localhost:8080/user/login';
+  private readonly API_REGISTER = 'http://localhost:8080/user/register';
+
+  constructor(private http: HttpClient, private router: Router) { }
 
   // Login methode
-  login(username: string, password: string) {
-    return this.angularFireAuth.signInWithEmailAndPassword(username, password)
+  login(username: string, password: string): Observable<any> {
+    return this.http.post<any>(this.API_LOGIN, { email: username, password })
+      .pipe(
+        catchError(error => {
+          console.error('Error during login:', error);
+          throw error;
+        })
+      );
   }
 
   // Register methode
-  register(username: string, password: string) {
-    this.angularFireAuth.createUserWithEmailAndPassword(username, password).then(() => {
-      alert('Registration Successfully !')
-      this.router.navigate(["/"])
-    }, err => {
-      alert('Something wrong')
-      this.router.navigate(["/register"])
-    })
+  register(username: string, password: string): Observable<any> {
+    return this.http.post<any>(this.API_REGISTER, { email: username, password })
+      .pipe(
+        catchError(error => {
+          console.error('Error during registration:', error);
+          throw error;
+        })
+      );
   }
 
   // SignOut
   logout() {
-    this.angularFireAuth.signOut().then(() => {
-      localStorage.removeItem('token')
-      this.router.navigate(["/"])
-    }, err => {
-      alert(err.message);
-    })
+    localStorage.removeItem('token');
+    this.router.navigate(['/']);
   }
 }

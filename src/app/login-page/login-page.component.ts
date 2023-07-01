@@ -41,7 +41,7 @@ export class LoginPageComponent implements OnInit {
     if (!this.form.valid) {
       return;
     }
-      this.authentificationService.login(this.form.value.Identifiant, this.form.value.Password).then(() => {
+      this.authentificationService.login(this.form.value.Identifiant, this.form.value.Password).subscribe(() => {
         this.loggedIn = true;
         localStorage.setItem('token', 'true')
         this.router.navigate(["/home"])
